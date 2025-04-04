@@ -6,6 +6,7 @@ public:
         sort(arr.begin(),arr.end());
         
         maxP=arr[n-1] * arr[n-2] * arr[n-3];
-        return maxP;
+        int option2 = arr[0] * arr[1] * arr[n-1];
+        return max(maxP,option2);
     }
 };
