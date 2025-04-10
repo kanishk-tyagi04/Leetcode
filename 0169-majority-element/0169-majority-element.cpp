@@ -1,9 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
+        unordered_map<int,int>um;
+        for(int num:nums){
+            um[num]++;
+        }
         int n=nums.size();
-        int mid=n/2;
-        return nums[mid];
+        int k=n/2;
+        for(auto &pair:um){
+            if(pair.second>k){
+                return pair.first;
+                break;
+            }
+        }
+        return -1;
     }
 };
