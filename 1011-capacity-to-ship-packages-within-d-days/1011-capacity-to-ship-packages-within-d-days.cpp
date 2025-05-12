@@ -19,12 +19,12 @@ private:
     }
 public:
     int shipWithinDays(vector<int>& weights, int days) {
-        int totalSum = 0;
+        int totalSum = accumulate(weights.begin(),weights.end(),0);
         int maxWeight = 0;
-        for(int i = 0; i < weights.size(); i++) {
-            totalSum += weights[i];
+        // for(int i = 0; i < weights.size(); i++) {
+        //     totalSum += weights[i];
 
-        }
+        // }
 
         int min =  totalSum / days;
         int max = totalSum;
