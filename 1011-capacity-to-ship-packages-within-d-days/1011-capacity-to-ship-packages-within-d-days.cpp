@@ -1,44 +1,35 @@
 class Solution {
-private:
-    bool isPossible(vector<int> weights, int capacity, int days){
-      
-        int weight = 0;
-        for(int i = 0; i < weights.size(); i++) {
-            if(weights[i] > capacity) {
-                return false;
-            } 
-            else if(weight + weights[i] > capacity) {
-                --days;
-                weight = weights[i];
-            } 
-            else {
-                weight += weights[i];
-            }
-        }
-        return days > 0;
-    }
 public:
-    int shipWithinDays(vector<int>& weights, int days) {
-        int totalSum = accumulate(weights.begin(),weights.end(),0);
-        int maxWeight = 0;
-        // for(int i = 0; i < weights.size(); i++) {
-        //     totalSum += weights[i];
-
-        // }
-
-        int min =  totalSum / days;
-        int max = totalSum;
-
-        while(min < max) {
-            int capacity = (min + max) / 2;
-            if(isPossible(weights, capacity, days)) {
-                max = capacity;
-            } else {
-                min = capacity + 1;
+    int isPossible(vector<int>&weights, int days, int capacity){
+        int weight=0;
+        for(int num:weights){
+            if(num>capacity){
+                return false;
+            }
+            if(weight+num>capacity)
+            {
+                --days;
+                weight=num;
+            }
+            else{
+                weight+=num;
             }
         }
-
-        return min                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+        return days>0;
+    }
+    int shipWithinDays(vector<int>& weights, int days) {
+        int total_sum = accumulate(weights.begin(), weights.end(), 0);
+        int max=total_sum;
+        int min=total_sum/days;
+        while(min<max){
+            int mid=(min+(max-min)/2);
+            if(isPossible(weights,days,mid)){
+                max=mid;
+            }
+            else{
+                min=mid+1;
+            }
+        }
+        return max;
     }
 };
-
