@@ -8,6 +8,7 @@ public:
           
             if(sentItems+weights[i]>capacity){
                 --days;
+                
                  sentItems=weights[i];
             }
             else{
