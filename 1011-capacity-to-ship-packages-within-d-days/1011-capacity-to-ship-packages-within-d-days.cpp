@@ -1,28 +1,27 @@
 class Solution {
 public:
-    int isPossible(vector<int>&weights, int days, int capacity){
-        int weight=0;
-        for(int num:weights){
-            if(num>capacity){
-                return false;
-            }
-            if(weight+num>capacity)
-            {
+    bool isPossible(vector<int>& weights,int days, int capacity){
+        int sentItems=0;
+        for(int i=0;i<weights.size();i++){
+
+            if(weights[i]>capacity)return false;
+          
+            if(sentItems+weights[i]>capacity){
                 --days;
-                weight=num;
+                 sentItems=weights[i];
             }
             else{
-                weight+=num;
+              sentItems+=weights[i];
             }
         }
         return days>0;
     }
     int shipWithinDays(vector<int>& weights, int days) {
-        int total_sum = accumulate(weights.begin(), weights.end(), 0);
-        int max=total_sum;
-        int min=total_sum/days;
+        int totalSum=accumulate(weights.begin(),weights.end(),0);
+        int max=totalSum;
+        int min=totalSum/days;
         while(min<max){
-            int mid=(min+(max-min)/2);
+            int mid=min+(max-min)/2;
             if(isPossible(weights,days,mid)){
                 max=mid;
             }
