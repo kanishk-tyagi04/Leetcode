@@ -5,10 +5,8 @@ public:
         for(int i=0;i<weights.size();i++){
 
             if(weights[i]>capacity)return false;
-          
             if(sentItems+weights[i]>capacity){
                 --days;
-                
                  sentItems=weights[i];
             }
             else{
