@@ -3,8 +3,8 @@ public:
     bool canJump(vector<int>& nums) {
         int jumplength=0,curr=0;
         int indx=0;
-
-        while(indx<nums.size()){
+    
+        while(indx<nums.size()-1){
             curr=nums[indx];
             jumplength=max(jumplength, curr);
             
